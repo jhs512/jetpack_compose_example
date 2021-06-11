@@ -36,48 +36,46 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NewsStory() {
-    MaterialTheme {
-        Column(
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(R.drawable.header),
+            contentDescription = null,
             modifier = Modifier
-                .padding(16.dp)
-                .fillMaxSize()
-        ) {
-            Image(
-                painter = painterResource(R.drawable.header),
-                contentDescription = null,
-                modifier = Modifier
-                    .height(180.dp)
-                    .fillMaxWidth()
-                    .clip(shape = RoundedCornerShape(4.dp)),
-                contentScale = ContentScale.Crop
-            )
+                .height(180.dp)
+                .fillMaxWidth()
+                .clip(shape = RoundedCornerShape(4.dp)),
+            contentScale = ContentScale.Crop
+        )
 
-            Spacer(Modifier.height(16.dp))
+        Spacer(Modifier.height(16.dp))
 
-            Text(
-                text = "A day wandering through the sandhills" +
-                        " in Shark Fin Cove, and a few of the" +
-                        " sights I saw",
-                style = typography.h6,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-            Text(
-                text = "Davenport, California",
-                style = typography.body2
-            )
-            Text(
-                text = "December 2018",
-                style = typography.body2
-            )
-        }
+        Text(
+            text = "A day wandering through the sandhills" +
+                    " in Shark Fin Cove, and a few of the" +
+                    " sights I saw",
+            style = typography.h6,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+        Text(
+            text = "Davenport, California",
+            style = typography.body2
+        )
+        Text(
+            text = "December 2018",
+            style = typography.body2
+        )
     }
 }
 
 @Preview
 @Composable
 fun PreviewApp() {
-    MyApplicationTheme(darkTheme = true) {
+    MyApplicationTheme {
         Surface(color = MaterialTheme.colors.background) {
             NewsStory()
         }
