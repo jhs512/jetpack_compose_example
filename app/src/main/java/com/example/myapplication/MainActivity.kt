@@ -5,7 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Surface
@@ -27,9 +29,20 @@ class MainActivity : ComponentActivity() {
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    NewsStory()
+                    NewList()
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun NewList() {
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState())
+    ) {
+        for (i in 1..10) {
+            NewsStory()
         }
     }
 }
@@ -39,7 +52,7 @@ fun NewsStory() {
     Column(
         modifier = Modifier
             .padding(16.dp)
-            .fillMaxSize()
+            .fillMaxWidth()
     ) {
         Image(
             painter = painterResource(R.drawable.header),
@@ -77,7 +90,7 @@ fun NewsStory() {
 fun PreviewApp() {
     MyApplicationTheme {
         Surface(color = MaterialTheme.colors.background) {
-            NewsStory()
+            NewList()
         }
     }
 }
