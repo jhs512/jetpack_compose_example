@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.typography
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,42 +18,29 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NewsStory()
+            MyApplicationTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(color = MaterialTheme.colors.background) {
+                    NewsStory()
+                }
+            }
         }
     }
 }
 
 @Composable
 fun NewsStory() {
-    /*
-    Column(modifier = Modifier.background(Color.Red), content = {
-        Text(text = "A day in Shark Fin Cove")
-        Text(text = "Davenport, California")
-        Text(text = "December 2018")
-    })
-    */
-
-    /*
-    Column(
-        modifier = Modifier
-            .background(Color.Red)
-            .fillMaxWidth()
-    ) {
-        Text(text = "A day in Shark Fin Cove")
-        Text(text = "Davenport, California")
-        Text(text = "December 2018")
-    }
-    */
-
     MaterialTheme {
         Column(
             modifier = Modifier
                 .padding(16.dp)
+                .fillMaxSize()
         ) {
             Image(
                 painter = painterResource(R.drawable.header),
@@ -89,5 +77,9 @@ fun NewsStory() {
 @Preview
 @Composable
 fun PreviewApp() {
-    NewsStory()
+    MyApplicationTheme(darkTheme = true) {
+        Surface(color = MaterialTheme.colors.background) {
+            NewsStory()
+        }
+    }
 }
