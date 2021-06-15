@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -21,10 +22,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import com.github.kittinunf.fuel.httpGet
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        "https://pokeapi.co/api/v2/pokemon".httpGet().response { request, response, result ->
+            Log.d("AAA", "String(response.data) : " + String(response.data))
+        }
+
         setContent {
             MyApplicationTheme {
                 // A surface container using the 'background' color from the theme
